@@ -1,0 +1,28 @@
+global:
+  scrape_interval:     15s 
+  evaluation_interval: 15s 
+
+  external_labels:
+    monitor: 'my-project'
+
+scrape_configs:
+  - job_name: 'prometheus'
+    scrape_interval: 5s
+
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'worker1'
+    scrape_interval: 5s
+    static_configs:
+        - targets: ['worker1:9464']
+
+  - job_name: 'worker2'
+    scrape_interval: 5s
+    static_configs:
+        - targets: ['worker2:9465']
+
+  - job_name: 'client'
+    scrape_interval: 5s
+    static_configs:
+        - targets: ['client:9466']

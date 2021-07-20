@@ -1,0 +1,23 @@
+{
+  "role": {
+    "name": "worker1"
+  },
+  "connectionString": "InstrumentationKey=57c17083-f9a1-410f-afd9-3ea3c216abba;IngestionEndpoint=https://eastus-8.in.applicationinsights.azure.com/",
+
+  "instrumentation": {
+    "logging": {
+      "level": "DEBUG"
+    }
+  },
+  "preview": {
+    "openTelemetryApiSupport": true,
+    "instrumentation": {
+      "azureSdk": {
+        "enabled": true
+      },
+      "rabbitmq": {
+        "enabled": true
+      }
+    }
+  }
+}
