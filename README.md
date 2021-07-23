@@ -173,7 +173,7 @@ $ make
 To start up all the containers, it's just:
 
 ```
-$ docker compose up
+$ docker-compose up
 ```
 
 It will take a couple of minutes to run the whole sample but you can verify that the containers are running if your terminal looks like this:

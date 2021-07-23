@@ -7,7 +7,7 @@ ENV_FILE_PARAM = --env-file .env
 all: clean package docker
 
 clean:
-	docker compose down
+	docker-compose down
 	mvn clean -f "./pom.xml"
 	cd client && $(MAKE) clean && cd ..
 	cd worker1 && $(MAKE) clean && cd ..
