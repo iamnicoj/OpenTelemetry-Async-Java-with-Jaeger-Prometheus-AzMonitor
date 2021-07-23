@@ -83,11 +83,11 @@ services:
     build:
       context: "./client"
     environment: 
-      - AGENTTYPE=${AGENTTYPE:?AGENTTYPE not defined}
+      - AGENTTYPE
       - OTEL_LOG_LEVEL
       - OTEL_JAVAAGENT_DEBUG
       - OTEL_AZ_MONITOR_CONNECTION
-      - OTEL_TRACES_EXPORTER=${OTEL_TRACES_EXPORTER:?OTEL_TRACES_EXPORTER not defined}
+      - OTEL_TRACES_EXPORTER
       - OTEL_METRICS_EXPORTER
       - OTEL_EXPORTER_PROMETHEUS_PORT=9466
       - OTEL_EXPORTER_PROMETHEUS_HOST=client
