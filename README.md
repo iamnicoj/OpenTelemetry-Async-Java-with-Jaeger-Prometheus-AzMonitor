@@ -4,7 +4,7 @@
 ## Table of contents
 
 * [TL;DR](#high-level-architecture) <br/>
-* [Why is this interisting?](#why-is-this-interesting) <br>
+* [Why is this interesting?](#why-is-this-interesting) <br>
 * [High level Architecture](#high-level-architecture) <br/>
   * [Business Flow](#business-flow) <br/>
   * [Repo Structure](#repo-structure) <br/>
