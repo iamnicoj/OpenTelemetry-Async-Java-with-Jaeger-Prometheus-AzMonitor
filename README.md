@@ -124,10 +124,13 @@ The following are the set of technologies and tools used to implement the comple
 # How to use it?
 
 ## Environment Prerequisites
+You can either follow the next manual instructions to install the prerequisites and run it locally:
 1. Install Make (Already available in MacOS and most Linux dist.)
 2. Install and run the **Docker engine** and the **Docker Compose** package
   * *If running as a non-root-user in Linux, add the user to the docker group. More info [here](https://docs.docker.com/engine/install/linux-postinstall/)* 
 3. Install the Maven CLI
+
+Or just run it in GitHub **Code Spaces** or within vscode as a development container
 
 ## Settings
 Make sure you are located on the **otelpoc** directory.
