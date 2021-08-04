@@ -25,7 +25,7 @@ public class RabbitMqReceiver {
 
         Span orderSpan1 = orderSpanBuilder.GetOtelOrderSpan(orderMessage, "OrderFinalTrace", "otelclient");
         try (Scope scope = orderSpan1.makeCurrent()) {
-            // TODO Add any validation once message comes back to client after message workflow
+            // Add any validation once message comes back to client after message workflow
 
         } finally {
             orderSpan1.end();
