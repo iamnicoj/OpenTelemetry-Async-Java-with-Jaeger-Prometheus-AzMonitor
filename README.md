@@ -45,7 +45,7 @@ OpenTelemetry is an open-source, vendor-agnostic, with a single distribution of 
 # Why is this interesting?
 1. Building observable systems enable one to measure how well the application is behaving. Adopting open-source standards related to implementing telemetry and tracing features built on top of the OpenTelemetry framework helps decouple vendor-specific implementations while maintaining an extensible, standard and portable open-source solution.
 1. Built on top of an end-to-end asynchronous workflow, this PoC allows you to get a real taste of how to instrument a message-oriented architecture through a series of correlated operations in a distributed system using the latest version of the OpenTelemetry Java SDK and OpenTelemetry Java Agent Jar as of July 2021.
-1. Validating the promise of the OpenTelemetry stack to allow for "plug and play" components and having a standard, flexible and extensible architecture in every segment of the telemetry lifecycle, by integrating it to **Jarger, Prometheous and Azure Monitor** as telemetry backends. 
+1. Validating the promise of the OpenTelemetry stack to allow for "plug and play" components and having a standard, flexible and extensible architecture in every segment of the telemetry lifecycle, by integrating it to **Jaeger, Prometheous and Azure Monitor** as telemetry backends. 
 1. Drills down into two different approaches to achieve the Azure Monitor integration:
     * Full OpenTelemetry stack, integrating the OpenTelemetry Java SDK, the OpenTelemetry Java Agent Jar, and Azure through the Azure Monitor OpenTelemetry Exporter Java library.
     * An azure-oriented approach using the Application Insights Java Agent jar alongside the OpenTelemetry Java SDK to instrument the code manually.
@@ -124,10 +124,13 @@ The following are the set of technologies and tools used to implement the comple
 # How to use it?
 
 ## Environment Prerequisites
+You can either follow the next manual instructions to install the prerequisites and run it locally:
 1. Install Make (Already available in MacOS and most Linux dist.)
 2. Install and run the **Docker engine** and the **Docker Compose** package
   * *If running as a non-root-user in Linux, add the user to the docker group. More info [here](https://docs.docker.com/engine/install/linux-postinstall/)* 
 3. Install the Maven CLI
+
+Or just run it in GitHub **Code Spaces** or within vscode as a development container
 
 ## Settings
 Make sure you are located on the **otelpoc** directory.
@@ -192,11 +195,11 @@ After a couple of minutes of getting kick off, the terminal window should look l
 The Docker compose includes a Jaeger container, which you can access at http://localhost:16686.
 **Only** if you are running on the OpenTelemetry agent mode, confirm that you see the 3 different applications within the service drop down list. Verify that you see aggregate spans that represents the different transactional flow of the messages lifecycle.
 
-![Jarger Home](./docs/JaegerHome.png)
+![Jaeger Home](./docs/JaegerHome.png)
 We can drill down on any of the Spans, and see the correlation between automatic and manual intrumentation. In the following image, the 'W1 Processing Order', which includes the `OrderMessage` attributes, is a manual Span that is part of a larger context propagation set of Spans.
-![Jarger Correlation](./docs/JaegerCorrelation.png)
+![Jaeger Correlation](./docs/JaegerCorrelation.png)
 An additional interesting feature provided *out of the box* by Jaeger is the *System Architecture* section. Here it detected the different applications and number of interactions among each of them:
-![Jarger Dependencies](./docs/JaegerDependencies.png)
+![Jaeger Dependencies](./docs/JaegerDependencies.png)
 
 ### Prometheus
 The Docker compose file includes a Prometheus service container, which you can access at http://localhost:9090/graph. Only if you are running on the OpenTelemetry agent mode, confirm that you see the 3 different applications when querying the `runtime_jvm_gc_count_total` metric.
