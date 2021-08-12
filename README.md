@@ -203,7 +203,7 @@ An additional interesting feature provided *out of the box* by Jaeger is the *Sy
 
 ### Prometheus
 The Docker compose file includes a Prometheus service container, which you can access at http://localhost:9090/graph. Only if you are running on the OpenTelemetry agent mode, confirm that you see the 3 different applications when querying the `runtime_jvm_gc_count_total` metric.
-![Prometheus](./docs/Prometheus.png)
+![Prometheus](./docs/prometheus.png)
 
 ### App Insights 
 You can make sure that traces are getting pushed to App Insights, using any of the java agents, using the following kusto query:
@@ -445,7 +445,7 @@ These are some of the known issues we discovered while exploring the different a
 * The OpenTelemetry Java Agent doesn't send automatic telemetry to Azure Monitor
 * Only manual traces gets pushed, which don't include dependency identification or correlation tracking
 * When using the Application Insights Java Agent, no other OpenTelemetry backend can be configured, limiting the options to only using Azure Monitor
-* Full end-two-end trace correlation among multiple applications and intermediary queues requires more manual context propagation management. The current solution can only correlate traces between two applications and one intermediary queue. Check the [SpanKind definition](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#spankind) for more information.
+* ~~Full end-two-end trace correlation among multiple applications and intermediary queues requires more manual context propagation management. The current solution can only correlate traces between two applications and one intermediary queue. Check the [SpanKind definition](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#spankind) for more information.~~ This issue was fix in the [Release v1.4.0](https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/tag/v1.4.0) of the Java Agent
 
 # Summary
 
