@@ -22,6 +22,9 @@ RUN apt-get update \
     && /bin/bash /tmp/library-scripts/docker-in-docker-debian.sh "${ENABLE_NONROOT_DOCKER}" "${USERNAME}" "${USE_MOBY}" \
     # Clean up
     && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts/
+
+RUN mkdir /home/vscode/rabbitmq \
+    && mkdir /home/vscode/rabbitmq/data && mkdir /home/vscode/rabbitmq/log 
     
 VOLUME [ "/var/lib/docker" ]
 
