@@ -6,9 +6,10 @@ import com.azure.monitor.opentelemetry.exporter.AzureMonitorTraceExporter;
 import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.exporter.jaeger.JaegerGrpcSpanExporter;
 import io.opentelemetry.sdk.OpenTelemetrySdk;
-import io.opentelemetry.sdk.autoconfigure.OpenTelemetrySdkAutoConfiguration;
+// import io.opentelemetry.sdk.autoconfigure.OpenTelemetrySdkAutoConfiguration;
 import io.opentelemetry.sdk.trace.SdkTracerProvider;
 import io.opentelemetry.sdk.trace.export.SimpleSpanProcessor;
+import io.opentelemetry.sdk.autoconfigure.AutoConfiguredOpenTelemetrySdk;
 
 public final class OtelConfiguration {
 
@@ -36,13 +37,13 @@ public final class OtelConfiguration {
             tracerProvider = SdkTracerProvider.builder()
             .addSpanProcessor(SimpleSpanProcessor.create(exporterJg))
             .addSpanProcessor(SimpleSpanProcessor.create(exporterAz))
-            .setResource(OpenTelemetrySdkAutoConfiguration.getResource())
+            .setResource(AutoConfiguredOpenTelemetrySdk.initialize().getResource())
             .build();
         }
         else{
             tracerProvider = SdkTracerProvider.builder()
             .addSpanProcessor(SimpleSpanProcessor.create(exporterJg))
-            .setResource(OpenTelemetrySdkAutoConfiguration.getResource())
+            //.setResource(AutoConfiguredOpenTelemetrySdk.initialize().getResource())
             .build();
         }
 
