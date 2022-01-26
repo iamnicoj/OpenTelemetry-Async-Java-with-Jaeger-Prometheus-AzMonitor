@@ -44,6 +44,7 @@ services:
       - OTEL_EXPORTER_PROMETHEUS_HOST=worker1
       - OTEL_EXPORTER_JAEGER_ENDPOINT
       - OTEL_RESOURCE_ATTRIBUTES=service.name=worker1
+      - service.name=worker1
     depends_on:
       - redis
       - rabbitmq
@@ -67,6 +68,7 @@ services:
       - OTEL_EXPORTER_PROMETHEUS_HOST=worker2
       - OTEL_EXPORTER_JAEGER_ENDPOINT
       - OTEL_RESOURCE_ATTRIBUTES=service.name=worker2
+      - service.name=worker2
     depends_on:
       - redis
       - rabbitmq
@@ -90,6 +92,7 @@ services:
       - OTEL_EXPORTER_PROMETHEUS_HOST=client
       - OTEL_EXPORTER_JAEGER_ENDPOINT
       - OTEL_RESOURCE_ATTRIBUTES=service.name=otelclient
+      - service.name=otelclient
     depends_on:
       - rabbitmq
       - jaeger

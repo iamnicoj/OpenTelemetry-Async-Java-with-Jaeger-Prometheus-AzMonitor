@@ -6,10 +6,12 @@ import com.azure.monitor.opentelemetry.exporter.AzureMonitorTraceExporter;
 import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.exporter.jaeger.JaegerGrpcSpanExporter;
 import io.opentelemetry.sdk.OpenTelemetrySdk;
-// import io.opentelemetry.sdk.autoconfigure.OpenTelemetrySdkAutoConfiguration;
 import io.opentelemetry.sdk.trace.SdkTracerProvider;
 import io.opentelemetry.sdk.trace.export.SimpleSpanProcessor;
-import io.opentelemetry.sdk.autoconfigure.AutoConfiguredOpenTelemetrySdk;
+import io.opentelemetry.sdk.resources.Resource;
+import io.opentelemetry.api.common.Attributes;
+import io.opentelemetry.semconv.resource.attributes.ResourceAttributes;
+
 
 public final class OtelConfiguration {
 
@@ -37,15 +39,17 @@ public final class OtelConfiguration {
             tracerProvider = SdkTracerProvider.builder()
             .addSpanProcessor(SimpleSpanProcessor.create(exporterJg))
             .addSpanProcessor(SimpleSpanProcessor.create(exporterAz))
-            .setResource(AutoConfiguredOpenTelemetrySdk.initialize().getResource())
+            // .setResource(AutoConfiguredOpenTelemetrySdk.initialize().getResource())
             .build();
         }
         else{
             tracerProvider = SdkTracerProvider.builder()
             .addSpanProcessor(SimpleSpanProcessor.create(exporterJg))
-            //.setResource(AutoConfiguredOpenTelemetrySdk.initialize().getResource())
+            .setResource(Resource.create
+                (Attributes.of
+                    (ResourceAttributes.SERVICE_NAME, System.getenv("service.name"))))
             .build();
-        }
+            }
 
         openTelemetrySdk =
             OpenTelemetrySdk.builder()
@@ -56,4 +60,5 @@ public final class OtelConfiguration {
     
         return openTelemetrySdk;
       }
+    
 }
