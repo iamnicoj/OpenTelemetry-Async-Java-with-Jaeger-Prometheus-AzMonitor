@@ -8,6 +8,7 @@ import entity.OrderMessage;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.StatusCode;
 import io.opentelemetry.api.trace.Tracer;
+import io.opentelemetry.api.GlobalOpenTelemetry;
 
 public class OtelOrderSpan {
 
@@ -18,7 +19,8 @@ public class OtelOrderSpan {
 
     public Span GetOtelOrderSpan(OrderMessage om, String spanName, String tracerName) throws InterruptedException {
 		if (System.getenv("AGENTTYPE").toLowerCase().equals("otel")){
-            tracer = OtelConfiguration.openTelemetrySdk.getTracer(tracerName);
+            // tracer = OtelConfiguration.openTelemetrySdk.getTracer(tracerName);
+            tracer = GlobalOpenTelemetry.getTracer(tracerName);
 		}
         
         Span childSpan = null;
