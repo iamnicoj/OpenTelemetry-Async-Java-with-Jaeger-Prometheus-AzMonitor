@@ -18,8 +18,6 @@
         <springframework.spring-context.version>5.3.6</springframework.spring-context.version>
     </properties>
 
-
-
     <build>
         <plugins>
             <plugin>
